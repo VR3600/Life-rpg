@@ -57,10 +57,13 @@
                 <!-- Form to Add Task (Graceful edge case handling via 'required') -->
                 <form id="quest-form" class="add-quest-box">
                     <input type="text" id="quest-input" placeholder="What is your next mission?" required tabindex="5">
-                    <select id="quest-attribute" tabindex="6">
-                        <option value="INT">Intellect</option>
-                        <option value="STR">Strength</option>
-                        <option value="FOC">Focus</option>
+                    <select id="quest-attribute" class="quest-select">
+                        <option value="Intellect">🧠 Intellect (Study/Work)</option>
+                        <option value="Strength">⚔️ Strength (Workout/Gym)</option>
+                        <option value="Agility">⚡ Agility (Chores/Errands)</option>
+                        <option value="Charisma">💬 Charisma (Social/Networking)</option>
+                        <option value="Vitality">❤️ Vitality (Health/Self-care)</option>
+                        <option value="Focus">🎯 Focus (Deep Work/Meditation)</option>
                     </select>
                     <button type="submit" class="btn-primary" tabindex="7">+ ADD</button>
                 </form>
