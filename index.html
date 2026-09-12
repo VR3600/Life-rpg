@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life RPG: Level Up Your Reality</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDK (CDN) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+
+    <!-- 1. Authentication View -->
+    <div id="auth-view" class="view-container active">
+        <div class="auth-box">
+            <h1 class="game-title">LIFE RPG</h1>
+            <p class="subtitle">Enter the Game of Life</p>
+            <form id="auth-form">
+                <input type="email" id="email" placeholder="Email (e.g., player@rpg.com)" required tabindex="1">
+                <input type="password" id="password" placeholder="Password" required tabindex="2">
+                <button type="submit" id="auth-btn" class="btn-primary" tabindex="3">START QUEST / LOGIN</button>
+                <div id="auth-error" class="error-msg" aria-live="polite"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2 & 3. Main Player Dashboard & Quest Board -->
+    <div id="app-view" class="view-container hidden">
+
+        <!-- Header: Stats & Economy -->
+        <header class="player-stats">
+            <div class="stat-group">
+                <div class="level-badge" aria-label="Player Level">LVL <span id="player-lvl">1</span></div>
+                <div class="xp-container">
+                    <div class="xp-text">XP: <span id="player-xp">0</span> / <span id="next-lvl-xp">100</span></div>
+                    <div class="xp-bar-bg">
+                        <div id="xp-bar-fill" class="xp-bar-fill"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="economy-group">
+                <div class="stat-badge streak" aria-label="Day Streak">🔥 <span id="player-streak">0</span></div>
+                <div class="stat-badge gold" aria-label="Gold Coins">💰 <span id="player-gold">0</span></div>
+                <button id="logout-btn" class="btn-secondary" tabindex="4">LOGOUT</button>
+            </div>
+        </header>
+
+        <main class="game-board">
+            <!-- Quest Board (CRUD) -->
+            <section class="quest-section">
+                <h2>ACTIVE QUESTS</h2>
+                <!-- Form to Add Task (Graceful edge case handling via 'required') -->
+                <form id="quest-form" class="add-quest-box">
+                    <input type="text" id="quest-input" placeholder="What is your next mission?" required tabindex="5">
+                    <select id="quest-attribute" tabindex="6">
+                        <option value="INT">Intellect</option>
+                        <option value="STR">Strength</option>
+                        <option value="FOC">Focus</option>
+                    </select>
+                    <button type="submit" class="btn-primary" tabindex="7">+ ADD</button>
+                </form>
+
+                <!-- Loading Skeleton (Speed & Interactions) -->
+                <div id="loading-skeleton" class="skeleton hidden">Loading quests...</div>
+
+                <ul id="quest-list" aria-live="polite">
+                    <!-- Tasks will be injected here via JS -->
+                </ul>
+            </section>
+
+            <!-- Rewards Shop -->
+            <!-- Rewards Shop -->
+            <aside class="rewards-section">
+                <h2>MERCHANT</h2>
+                <div class="reward-items">
+                    <div class="reward-card" tabindex="0">
+                        <span>Profile Badge</span>
+                        <button class="btn-buy" data-cost="200">200 💰</button>
+                    </div>
+                    <div class="reward-card" tabindex="0">
+                        <span>Render Fast-Track Boost</span>
+                        <button class="btn-buy" data-cost="300">300 💰</button>
+                    </div>
+                    <div class="reward-card" tabindex="0">
+                        <span>Epic Theme</span>
+                        <button class="btn-buy" data-cost="500">500 💰</button>
+                    </div>
+                    <div class="reward-card" tabindex="0">
+                        <span>GitHub Pro Avatar</span>
+                        <button class="btn-buy" data-cost="750">750 💰</button>
+                    </div>
+                    <div class="reward-card" tabindex="0">
+                        <span>Weekend Cheat Day</span>
+                        <button class="btn-buy" data-cost="1000">1000 💰</button>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
