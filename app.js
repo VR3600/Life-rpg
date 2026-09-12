@@ -152,7 +152,11 @@ function renderQuest(id, title, attribute) {
 }
 
 // Complete Quest & Gain XP (Rewards Economy + Optimistic UI)
+// Complete Quest & Gain XP (Rewards, Optimistic UI & Audio Feedback)
 window.completeQuest = async (id) => {
+    // 1. Audio: Task check karte hi "Coin Drop" sound
+    new Audio('https://cdn.pixabay.com/download/audio/2021/08/04/audio_c6ccf3232f.mp3?filename=coin-drop-39914.mp3').play().catch(e => console.log('Audio blocked by browser'));
+
     const checkbox = document.querySelector(`input[onchange="completeQuest('${id}')"]`);
     if(checkbox) checkbox.closest('li').remove();
 
@@ -167,16 +171,16 @@ window.completeQuest = async (id) => {
     if (xp >= requiredXP) {
         level += 1;
         xp = xp - requiredXP; 
+        
+        // 2. Audio: Level Up hone par "Retro Arcade Win" sound
+        new Audio('https://cdn.pixabay.com/download/audio/2021/08/04/audio_0625c1539c.mp3?filename=success-1-6297.mp3').play().catch(e => console.log('Audio blocked by browser'));
+        
         setTimeout(() => alert(`🎉 LEVEL UP! You are now Level ${level}!`), 100); 
     }
 
     updateUI(xp, level, gold, streak, inventory);
     
     await userRef.update({ xp, level, gold, streak });
-    await db.collection('users').doc(currentUser.uid).collection('quests').doc(id).delete();
-};
-
-window.deleteQuest = async (id) => {
     await db.collection('users').doc(currentUser.uid).collection('quests').doc(id).delete();
 };
 
