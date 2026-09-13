@@ -1,5 +1,9 @@
 # Life RPG - Hackathon Submission
 
+Example Email & Password
+Email: judge@liferpg.com
+Password: testpassword123
+
 A gamified habit tracker that translates mundane real-world tasks into an engaging virtual progression system. 
 
 * **Live Deployed URL:** https://life-rpg-rgik.onrender.com
